@@ -2,6 +2,16 @@ import { Award, Cloud } from "lucide-react";
 
 const certifications = [
   {
+    title: "SQL (Intermediate) Certificate",
+    provider: "HackerRank",
+    period: "Issued Feb 2026",
+    icon: Award,
+    bullets: [
+      "Credential ID: C8BE9CC4F7C9",
+      "Demonstrated proficiency in SQL fundamentals including queries, joins, aggregations, and data manipulation.",
+    ],
+  },
+  {
     title: "Azure Data Engineer Training",
     provider: "Naresh i Technologies | Hyderabad",
     period: "Feb 2026 – Apr 2026 (Expected)",
