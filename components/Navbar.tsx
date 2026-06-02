@@ -14,7 +14,6 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -22,56 +21,35 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    const handleHashChange = () => {
-      setActiveSection(window.location.hash);
-    };
-    handleHashChange();
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
-  }, []);
-
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "backdrop-blur-xl bg-background/80 border-b border-border/50 shadow-lg shadow-black/20"
-          : "bg-transparent border-b border-transparent"
+        scrolled ? "backdrop-blur-lg bg-background/80 border-b border-border" : ""
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a
-          href="#"
-          className="font-mono text-xl font-semibold text-foreground hover:text-primary transition-colors group"
-        >
-          AK<span className="text-primary group-hover:animate-glow-pulse">_</span>
+        <a href="#" className="font-mono text-lg font-semibold text-foreground hover:text-primary transition-colors">
+          AK<span className="text-primary">_</span>
         </a>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-2">
+        <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className={`px-4 py-2 text-sm rounded-lg transition-all relative group ${
-                activeSection === link.href
-                  ? "text-primary bg-primary/10"
-                  : "text-muted hover:text-foreground hover:bg-surface"
-              }`}
+              className="text-sm text-muted hover:text-foreground transition-colors relative group"
             >
               {link.label}
-              {activeSection === link.href && (
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full" />
-              )}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
             </a>
           ))}
         </div>
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-foreground p-2 hover:bg-surface rounded-lg transition-colors"
+          className="md:hidden text-foreground"
           onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -79,17 +57,13 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-surface/95 backdrop-blur-xl border-b border-border">
-          <div className="px-6 py-4 flex flex-col gap-2">
+        <div className="md:hidden bg-surface border-b border-border">
+          <div className="px-6 py-4 flex flex-col gap-4">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className={`px-4 py-3 rounded-lg transition-all ${
-                  activeSection === link.href
-                    ? "text-primary bg-primary/10"
-                    : "text-muted hover:text-foreground hover:bg-surface-light"
-                }`}
+                className="text-muted hover:text-foreground transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ArrowRight, ExternalLink, Sparkles } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 
 export default function Hero() {
   const [typedText, setTypedText] = useState("");
@@ -21,46 +21,37 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden grid-bg pt-20">
-      {/* Enhanced Gradient Orbs */}
-      <div className="gradient-orb w-[500px] h-[500px] bg-gradient-to-r from-primary/40 to-blue-500/30 top-[-10%] -left-[15%] animate-float" style={{ animationDelay: "0s" }} />
-      <div className="gradient-orb w-[400px] h-[400px] bg-gradient-to-r from-secondary/30 to-purple-500/20 bottom-[10%] -right-[10%] animate-float" style={{ animationDelay: "-4s" }} />
-      <div className="gradient-orb w-64 h-64 bg-cyan-500/20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 blur-[100px]" />
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden grid-bg">
+      {/* Gradient Orbs */}
+      <div className="gradient-orb w-96 h-96 bg-primary/30 top-20 -left-48" />
+      <div className="gradient-orb w-80 h-80 bg-secondary/20 bottom-20 right-10" />
 
-      <div className="max-w-5xl mx-auto px-6 text-center relative z-10">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm mb-10 animate-fade-in-up backdrop-blur-sm shadow-lg shadow-primary/10">
-          <Sparkles size={14} className="animate-pulse" />
-          <span className="font-medium">Available for opportunities</span>
-        </div>
-
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 font-mono animate-fade-in-up stagger-1 leading-tight">
-          <span className="bg-gradient-to-r from-foreground via-foreground to-muted bg-clip-text text-transparent">Aman Kumar Singh</span>
+      <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+        <h1 className="text-5xl md:text-7xl font-bold mb-6 font-mono">
+          <span className="text-foreground">Aman Kumar Singh</span>
           <span className="text-primary animate-glow-pulse">_</span>
         </h1>
 
-        <p className="text-xl md:text-2xl lg:text-3xl text-secondary font-mono mb-6 min-h-[2rem] animate-fade-in-up stagger-2">
+        <p className="text-xl md:text-2xl text-secondary font-mono mb-8 min-h-[2rem]">
           {typedText}
           <span className="typing-cursor text-primary" />
         </p>
 
-        <p className="text-muted max-w-2xl mx-auto mb-12 text-lg leading-relaxed animate-fade-in-up stagger-3">
-          Transforming raw data into{" "}
-          <span className="text-primary font-medium">actionable insights</span> through
-          scalable pipelines, ETL processes, and cloud-native data architectures.
+        <p className="text-muted max-w-2xl mx-auto mb-12 text-lg">
+          Transforming raw data into actionable insights through scalable pipelines,
+          ETL processes, and cloud-native data architectures.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up stagger-4">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="#projects"
-            className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-blue-600 text-white font-medium rounded-xl hover:from-blue-600 hover:to-primary transition-all hover:shadow-2xl hover:shadow-primary/40 hover:-translate-y-1"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/30"
           >
-            View Projects
-            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+            View Projects <ArrowRight size={18} />
           </a>
           <a
             href="#contact"
-            className="group inline-flex items-center justify-center gap-2 px-8 py-4 border border-border text-foreground font-medium rounded-xl hover:border-primary/60 hover:text-primary transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10 hover:bg-primary/5"
+            className="inline-flex items-center gap-2 px-8 py-4 border border-border text-foreground font-medium rounded-lg hover:border-primary hover:text-primary transition-all"
           >
             <ExternalLink size={18} /> Get in Touch
           </a>
@@ -68,9 +59,9 @@ export default function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-float hidden sm:block">
-        <div className="w-6 h-10 border-2 border-border/60 rounded-full flex justify-center pt-2 bg-background/50 backdrop-blur-sm">
-          <div className="w-1.5 h-3 bg-primary/60 rounded-full animate-bounce" />
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-float">
+        <div className="w-6 h-10 border-2 border-muted rounded-full flex justify-center pt-2">
+          <div className="w-1 h-2 bg-muted rounded-full animate-bounce" />
         </div>
       </div>
     </section>
