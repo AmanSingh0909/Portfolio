@@ -1,6 +1,23 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import { FolderOpen, ExternalLink } from "lucide-react";
 
 const projects = [
+  {
+    title: "Netflix Azure Medallion Data Pipeline",
+    description:
+      "End-to-end Netflix data pipeline on Azure using Medallion Architecture (Bronze → Silver → Gold) with Databricks, ADLS Gen2, and Delta Lake.",
+    bullets: [
+      "Automated data ingestion from GitHub to Azure Blob Storage using Azure Data Factory pipelines with validation, metadata tracking, and ForEach activity loops.",
+      "Developed incremental data transformation layers using PySpark and Databricks Autoloader, implementing schema inference, null handling, and feature engineering across Bronze and Silver Delta tables.",
+      "Created declarative Gold layer streaming pipelines with Databricks Delta Live Tables (SDP), enforcing data quality rules and building a Star Schema serving layer.",
+      "Integrated GitHub with Azure Data Factory for CI/CD-based pipeline deployment and version control.",
+    ],
+    tech: ["Azure Data Factory", "Databricks", "Delta Lake", "PySpark", "ADLS Gen2", "Delta Live Tables", "Azure Synapse", "Power BI", "Unity Catalog", "GitHub"],
+    github: "#",
+    live: null,
+  },
   {
     title: "Data Lakehouse Pipeline",
     description:
@@ -45,13 +62,37 @@ const projects = [
 ];
 
 export default function Projects() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            (entry.target as HTMLElement).classList.add("animate-scale-in");
+            (entry.target as HTMLElement).style.opacity = "1";
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    sectionRef.current?.querySelectorAll<HTMLElement>(".project-card").forEach((el, index) => {
+      el.style.opacity = "0";
+      el.classList.add(`stagger-${(index % 5) + 1}`);
+      observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="projects" className="py-24 relative">
+    <section id="projects" ref={sectionRef} className="py-24 relative">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
-          <p className="text-primary text-sm mb-4">&mdash;</p>
-          <h2 className="text-4xl font-bold font-mono">Featured Work</h2>
-          <p className="text-muted mt-4 max-w-2xl mx-auto">
+          <p className="text-primary text-sm mb-4 font-mono">&mdash; Projects</p>
+          <h2 className="text-4xl md:text-5xl font-bold font-mono mb-4">Featured Work</h2>
+          <p className="text-muted mt-4 max-w-2xl mx-auto text-lg">
             Selected projects showcasing my expertise in data engineering
           </p>
         </div>
@@ -60,18 +101,28 @@ export default function Projects() {
           {projects.map((project) => (
             <div
               key={project.title}
-              className="bg-surface border border-border rounded-xl p-6 glow-border hover:border-primary/30 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5"
+              className="project-card opacity-0 bg-surface border border-border rounded-2xl p-6 hover:border-primary/40 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10 group"
             >
-              <h3 className="text-xl font-semibold mb-3 text-foreground">
+              {/* Card header with icon */}
+              <div className="flex items-start justify-between mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <FolderOpen className="w-6 h-6 text-primary" />
+                </div>
+              </div>
+
+              <h3 className="text-xl font-semibold mb-3 text-foreground group-hover:text-primary transition-colors">
                 {project.title}
               </h3>
-              <p className="text-muted text-sm mb-4 leading-relaxed">
+              <p className="text-muted text-sm mb-4 leading-relaxed line-clamp-3">
                 {project.description}
               </p>
-              <ul className="space-y-1 mb-4">
+              <ul className="space-y-2 mb-4">
                 {project.bullets.map((bullet, i) => (
-                  <li key={i} className="text-muted text-xs leading-relaxed flex items-start gap-2">
-                    <span className="text-primary mt-0.5">▹</span>
+                  <li
+                    key={i}
+                    className="text-muted text-xs leading-relaxed flex items-start gap-2"
+                  >
+                    <span className="text-primary mt-0.5 flex-shrink-0">▹</span>
                     {bullet}
                   </li>
                 ))}
@@ -80,20 +131,21 @@ export default function Projects() {
                 {project.tech.map((tech) => (
                   <span
                     key={tech}
-                    className="px-2 py-1 bg-primary/10 text-primary text-xs rounded font-mono"
+                    className="px-2.5 py-1 bg-primary/10 border border-primary/20 text-primary text-xs rounded-full font-mono hover:bg-primary/20 transition-colors"
                   >
                     {tech}
                   </span>
                 ))}
               </div>
-              <div className="flex gap-4">
+              <div className="flex gap-4 pt-4 border-t border-border">
                 <a
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors"
+                  className="inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors group-hover:hover:text-primary"
                 >
-                  <FolderOpen size={16} /> Code
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                  Code
                 </a>
                 {project.live && (
                   <a
@@ -109,7 +161,7 @@ export default function Projects() {
             </div>
           ))}
         </div>
-              </div>
+      </div>
     </section>
   );
 }
