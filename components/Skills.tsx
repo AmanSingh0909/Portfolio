@@ -60,7 +60,7 @@ export default function Skills() {
           {skillCategories.map(({ title, icon: Icon, skills }) => (
             <div
               key={title}
-              className="bg-surface border border-border rounded-xl p-6 glow-border hover:border-primary/30 transition-all"
+              className="bg-surface border border-border rounded-xl p-6 glow-border hover:border-secondary/40 hover:bg-surface/80 transition-all duration-300"
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-2 bg-primary/10 rounded-lg">

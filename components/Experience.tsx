@@ -33,7 +33,7 @@ export default function Experience() {
                 {/* Timeline dot */}
                 <div className="absolute -left-[2.6rem] top-1 w-4 h-4 rounded-full bg-primary border-4 border-background" />
 
-                <div className="bg-surface border border-border rounded-xl p-6 glow-border hover:border-primary/30 transition-all">
+                <div className="bg-surface border border-border rounded-xl p-6 glow-border hover:border-secondary/40 hover:bg-surface/80 transition-all duration-300">
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
                     <h3 className="text-xl font-semibold text-foreground">
                       {exp.role}

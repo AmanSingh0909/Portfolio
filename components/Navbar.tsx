@@ -24,12 +24,12 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "backdrop-blur-lg bg-background/80 border-b border-border" : ""
+        scrolled ? "backdrop-blur-lg bg-background/90 border-b border-border shadow-sm" : ""
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#" className="font-mono text-lg font-semibold text-foreground hover:text-primary transition-colors">
-          AK<span className="text-primary">_</span>
+        <a href="#" className="font-mono text-lg font-semibold text-primary hover:text-secondary transition-colors">
+          AK<span className="text-secondary">_</span>
         </a>
 
         {/* Desktop Nav */}
@@ -57,13 +57,13 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-surface border-b border-border">
+        <div className="md:hidden bg-surface/95 border-b border-border shadow-sm">
           <div className="px-6 py-4 flex flex-col gap-4">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-muted hover:text-foreground transition-colors"
+                className="text-muted hover:text-primary transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}

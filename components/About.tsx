@@ -13,30 +13,30 @@ export default function About() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <p className="text-primary text-sm mb-4">&mdash;</p>
+            <p className="text-primary text-sm mb-4 font-mono tracking-[0.3em] uppercase">About Me</p>
             <h2 className="text-4xl font-bold mb-6 font-mono">
               Azure Data Engineer
             </h2>
-            <p className="text-muted text-lg leading-relaxed mb-4">
-              Certification Expected: May 2026
+            <p className="text-muted text-lg leading-relaxed mb-6">
+              Certified Azure data engineering professional focused on building secure,
+              scalable data systems that deliver analytics-ready insights.
             </p>
             <p className="text-muted text-lg leading-relaxed mb-6">
-              Hands-on experience building large-scale data pipelines, data systems, and schema design.
-              Core stack: Python, SQL, PySpark, Spark, ADF, ADLS Gen2, Databricks, Key Vault, and Azure DevOps.
+              I create reliable end-to-end data flows using PySpark, Azure Data Factory,
+              Databricks, and Delta Lake. My work combines automation, governance,
+              and performance tuning to help teams move from raw data to trusted outcomes.
             </p>
-            <p className="text-muted text-lg leading-relaxed mb-8">
-              Skilled in big data technologies, data quality validation, and data processing optimization.
-              Additional exposure to AWS Cloud and full-stack development (Node.js / React.js),
-              with a focus on building secure, scalable, and business-driven data solutions.
+            <p className="text-muted text-lg leading-relaxed">
+              Recent experience includes cloud pipeline design, Data Lakehouse architecture,
+              CI/CD deployment, and cross-team collaboration for business-critical reporting.
             </p>
-            <p className="text-primary text-sm">&mdash;</p>
           </div>
 
           <div className="grid grid-cols-2 gap-6">
             {stats.map(({ icon: Icon, label, value }) => (
               <div
                 key={label}
-                className="bg-surface border border-border rounded-xl p-6 text-center glow-border hover:border-primary/50 transition-all"
+                className="bg-surface border border-border rounded-3xl p-6 text-center glow-border hover:border-secondary/40 hover:bg-surface/80 transition-all duration-300"
               >
                 <Icon className="w-8 h-8 text-primary mx-auto mb-3" />
                 <div className="text-3xl font-bold font-mono text-foreground mb-1">

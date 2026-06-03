@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FolderOpen, ExternalLink } from "lucide-react";
 
 const projects = [
@@ -63,6 +63,7 @@ const projects = [
 
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -86,22 +87,24 @@ export default function Projects() {
     return () => observer.disconnect();
   }, []);
 
+  const visibleProjects = showAll ? projects : projects.slice(0, 3);
+
   return (
     <section id="projects" ref={sectionRef} className="py-24 relative">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
           <p className="text-primary text-sm mb-4 font-mono">&mdash; Projects</p>
           <h2 className="text-4xl md:text-5xl font-bold font-mono mb-4">Featured Work</h2>
-          <p className="text-muted mt-4 max-w-2xl mx-auto text-lg">
-            Selected projects showcasing my expertise in data engineering
+          <p className="text-muted mt-4 max-w-2xl mx-auto text-lg leading-relaxed">
+            Showing the top three data engineering projects first. Click the + button below to reveal the full portfolio.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
+          {visibleProjects.map((project) => (
             <div
               key={project.title}
-              className="project-card opacity-0 bg-surface border border-border rounded-2xl p-6 hover:border-primary/40 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10 group"
+              className="project-card opacity-0 bg-surface border border-border rounded-2xl p-6 hover:border-secondary/40 hover:bg-surface/95 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-secondary/10 group"
             >
               {/* Card header with icon */}
               <div className="flex items-start justify-between mb-4">
@@ -160,6 +163,16 @@ export default function Projects() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="flex justify-center mt-10">
+          <button
+            type="button"
+            onClick={() => setShowAll((current) => !current)}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-secondary text-secondary hover:bg-secondary/10 hover:text-white transition-colors"
+          >
+            {showAll ? "Show fewer projects" : "View more projects +"}
+          </button>
         </div>
       </div>
     </section>
